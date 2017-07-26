@@ -13,7 +13,19 @@ const App = React.createClass({
     },
 
     render:function () {
-        return <div>hello</div>
+        var todoList = this.state.todoList;
+        return <div>
+            <section>
+                <Header title={todoList.name} />
+            </section>
+
+        </div>
+    }
+})
+
+const Header = React.createClass({
+    render:function () {
+        return <h1>{this.props.title}</h1>
     }
 })
 
