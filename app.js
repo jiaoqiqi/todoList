@@ -32,6 +32,21 @@ const App = React.createClass({
         })
     },
 
+    deleteHandel: function (index) {
+        return function () {
+            let todos = this.state.todoList.todos,
+                todolist = {
+                    todolist: {
+                        name: "todos",
+                        todos: []
+                    }
+                };
+            todos.splice(index, 1), todolist.todolist.todos = todos;
+
+            this.setState(todolist)
+        }.bind(this)
+    },
+
     render: function () {
         var todolist = this.state.todoList;
 
@@ -45,7 +60,8 @@ const App = React.createClass({
                            onChange={this.onChange}
                            onKeyPress={this.addHandle}/>
                 </div>
-                <TodoList todos={todolist.todos} type={this.state.type}/>
+                <TodoList todos={todolist.todos} type={this.state.type}
+                          delTask={this.deleteHandel}/>
 
             </section>
 
@@ -86,22 +102,22 @@ const TodoList = React.createClass({
                 switch (this.props.type) {
                     case 'all':
                         return <TodoItem data={todo} key={i}
-                                         // delTask={this.props.delTask(i)}
-                                         // comTask={this.props.comTask(i)}
+                                         delTask={this.props.delTask(i)}
+                            // comTask={this.props.comTask(i)}
                         />
                     case 'active':
                         if (!todo.completed) {
                             return <TodoItem data={todo} key={i}
-                                             // delTask={this.props.delTask(i)}
-                                             // comTask={this.props.comTask(i)}
+                                             delTask={this.props.delTask(i)}
+                                // comTask={this.props.comTask(i)}
                             />
                         }
                         break;
                     case 'completed' :
                         if (todo.completed) {
                             return <TodoItem data={todo} key={i}
-                                             // delTask={this.props.delTask(i)}
-                                             // comTask={this.props.comTask(i)}
+                                             delTask={this.props.delTask(i)}
+                                // comTask={this.props.comTask(i)}
                             />
                         }
                         break;
