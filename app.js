@@ -47,8 +47,50 @@ const App = React.createClass({
         }.bind(this)
     },
 
+    switchToCompleted: function (index) {
+
+        return function () {
+            this.setState(function () {
+                let todolist = this.state.todolist;
+
+                todolist['todos'][index]['completed'] = !todolist['todos'][index]['completed'];
+
+                return todolist;
+            });
+        }.bind(this);
+    },
+
+    switchType: function () {
+        return function (hash, e) {
+            let type = '';
+
+            switch (hash) {
+                case "active":
+                    type = 'active';
+                    break;
+                case 'completed':
+                    type = 'completed';
+                    break;
+                default:
+                    type = 'all';
+                    break;
+            }
+            this.setState({type: type})
+        }.bind(this);
+    },
+
     render: function () {
-        var todolist = this.state.todoList;
+        const todolist = this.state.todoList;
+
+        const lefted = todolist.todos.reduce(function (account, todo) {
+            return todo.completed ? account : account + 1;
+        }, 0);
+
+        let footer = todolist.todos.length ?
+            <Footer lefted={lefted}
+                    type={this.state.type}
+                    switchType={this.switchType()}
+            /> : '';
 
         return <div>
             <section>
@@ -61,7 +103,9 @@ const App = React.createClass({
                            onKeyPress={this.addHandle}/>
                 </div>
                 <TodoList todos={todolist.todos} type={this.state.type}
-                          delTask={this.deleteHandel}/>
+                          delTask={this.deleteHandel}
+                          comTask={this.switchToCompleted}/>
+                {footer}
 
             </section>
 
@@ -103,13 +147,13 @@ const TodoList = React.createClass({
                     case 'all':
                         return <TodoItem data={todo} key={i}
                                          delTask={this.props.delTask(i)}
-                            // comTask={this.props.comTask(i)}
+                                         comTask={this.props.comTask(i)}
                         />
                     case 'active':
                         if (!todo.completed) {
                             return <TodoItem data={todo} key={i}
                                              delTask={this.props.delTask(i)}
-                                // comTask={this.props.comTask(i)}
+                                             comTask={this.props.comTask(i)}
                             />
                         }
                         break;
@@ -117,7 +161,7 @@ const TodoList = React.createClass({
                         if (todo.completed) {
                             return <TodoItem data={todo} key={i}
                                              delTask={this.props.delTask(i)}
-                                // comTask={this.props.comTask(i)}
+                                             comTask={this.props.comTask(i)}
                             />
                         }
                         break;
@@ -127,6 +171,51 @@ const TodoList = React.createClass({
             })}
 
         </ol>
+    }
+});
+
+const Footer = React.createClass({
+    render: function() {
+        let type = ['', '', ''];
+        switch (this.props.type) {
+            case 'active' :
+                type[1] = 'selected';
+                break;
+            case 'completed' :
+                type[2] = 'selected';
+                break;
+            default :
+                type[0] = 'selected';
+                break;
+        }
+
+        return <footer className="footer">
+            <span className="todo-count">
+                {this.props.lefted}
+                <span> items </span>
+                <span> left </span>
+            </span>
+
+            <ol>
+                <li>
+                    <a href="#" className={type[0]}
+                       onClick={this.props.switchType.bind(null, 'all')}>
+                        All</a>
+                </li>
+
+                <li>
+                    <a href="#active" className={type[1]}
+                       onClick={this.props.switchType.bind(null, 'active')}>
+                        Active</a>
+                </li>
+
+                <li>
+                    <a href="#completed" className={type[2]}
+                       onClick={this.props.switchType.bind(null, 'completed')}>
+                        Completed</a>
+                </li>
+            </ol>
+        </footer>
     }
 })
 
