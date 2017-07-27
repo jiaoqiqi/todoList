@@ -79,6 +79,17 @@ const App = React.createClass({
         }.bind(this);
     },
 
+    clearCompleted:function () {
+        return function () {
+            let todolist = this.state.todoList;
+            let todos = todolist.todos.filter( (todo)=> {
+                return !todo.completed;
+            })
+            todolist.todos = todos;
+            this.setState(todolist)
+        }.bind(this);
+    },
+
     render: function () {
         const todolist = this.state.todoList;
 
@@ -90,6 +101,7 @@ const App = React.createClass({
             <Footer lefted={lefted}
                     type={this.state.type}
                     switchType={this.switchType()}
+                    clearCom = {this.clearCompleted()}
             /> : '';
 
         return <div>
@@ -214,6 +226,8 @@ const Footer = React.createClass({
                        onClick={this.props.switchType.bind(null, 'completed')}>
                         Completed</a>
                 </li>
+
+                <button onClick={this.props.clearCom}>Clear Completed</button>
             </ol>
         </footer>
     }
