@@ -51,7 +51,7 @@ const App = React.createClass({
 
         return function () {
             this.setState(function () {
-                let todolist = this.state.todolist;
+                let todolist = this.state.todoList;
 
                 todolist['todos'][index]['completed'] = !todolist['todos'][index]['completed'];
 
@@ -175,7 +175,7 @@ const TodoList = React.createClass({
 });
 
 const Footer = React.createClass({
-    render: function() {
+    render: function () {
         let type = ['', '', ''];
         switch (this.props.type) {
             case 'active' :
