@@ -79,10 +79,10 @@ const App = React.createClass({
         }.bind(this);
     },
 
-    clearCompleted:function () {
+    clearCompleted: function () {
         return function () {
             let todolist = this.state.todoList;
-            let todos = todolist.todos.filter( (todo)=> {
+            let todos = todolist.todos.filter((todo) => {
                 return !todo.completed;
             })
             todolist.todos = todos;
@@ -101,23 +101,27 @@ const App = React.createClass({
             <Footer lefted={lefted}
                     type={this.state.type}
                     switchType={this.switchType()}
-                    clearCom = {this.clearCompleted()}
+                    clearCom={this.clearCompleted()}
             /> : '';
 
         return <div>
             <section>
                 <Header title={todoList.name}/>
-                <div>
-                    <input type="text" ref="addTask"
+                <div className="todos">
+                    <input className="inputTodo"
+                           type="text" ref="addTask"
                            placeholder="What needs to be done?"
                            defaultValue={this.state.addTitle}
                            onChange={this.onChange}
-                           onKeyPress={this.addHandle}/>
+                           onKeyPress={this.addHandle}
+                    />
                 </div>
-                <TodoList todos={todolist.todos} type={this.state.type}
-                          delTask={this.deleteHandel}
-                          comTask={this.switchToCompleted}/>
-                {footer}
+                <div className="list">
+                    <TodoList todos={todolist.todos} type={this.state.type}
+                              delTask={this.deleteHandel}
+                              comTask={this.switchToCompleted}/>
+                    {footer}
+                </div>
 
             </section>
 
@@ -143,7 +147,7 @@ const TodoItem = React.createClass({
                        checked={this.completed}/>
 
                 <label> {todo.title} </label>
-                <button onClick={this.props.delTask}></button>
+                <button className="glyphicon glyphicon-remove deleteButton" onClick={this.props.delTask}></button>
 
             </div>
             <input type="text" value={todo.title}/>
