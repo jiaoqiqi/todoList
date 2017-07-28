@@ -107,7 +107,7 @@ const App = React.createClass({
         return <div>
             <section>
                 <Header title={todoList.name}/>
-                <div className="todos">
+                <div className="todos ">
                     <input className="inputTodo"
                            type="text" ref="addTask"
                            placeholder="What needs to be done?"
@@ -140,18 +140,18 @@ const TodoItem = React.createClass({
         const todo = this.props.data;
         const className = todo.completed ? "completed" : "";
 
-        return <li className={className}>
-            <div className="view">
+        return <div className={className}>
+            <div>
                 <input type="checkbox"
                        onClick={this.props.comTask}
-                       checked={this.completed}/>
+                       checked={this.completed}
+                       className="todoChoose 	glyphicon glyphicon-ok"/>
 
-                <label> {todo.title} </label>
-                <button className="glyphicon glyphicon-remove deleteButton" onClick={this.props.delTask}></button>
-
+                <label className="todoTitle"> {todo.title} </label>
+                <button className="glyphicon glyphicon-remove deleteButton"
+                        onClick={this.props.delTask}></button>
             </div>
-            <input type="text" value={todo.title}/>
-        </li>
+        </div>
     }
 })
 
@@ -206,33 +206,34 @@ const Footer = React.createClass({
         }
 
         return <footer className="footer">
-            <span className="todo-count">
+            <span className="todo-count ">
                 {this.props.lefted}
                 <span> items </span>
                 <span> left </span>
             </span>
+            <div >
+                <div className="type">
+                <a href="#" className={type[0]}
+                   onClick={this.props.switchType.bind(null, 'all')}>
+                    All </a>
+                </div>
 
-            <ol>
-                <li>
-                    <a href="#" className={type[0]}
-                       onClick={this.props.switchType.bind(null, 'all')}>
-                        All</a>
-                </li>
+                <div className="type">
+                <a href="#active" className={type[1]}
+                   onClick={this.props.switchType.bind(null, 'active')}>
+                    Active </a>
+                </div>
 
-                <li>
-                    <a href="#active" className={type[1]}
-                       onClick={this.props.switchType.bind(null, 'active')}>
-                        Active</a>
-                </li>
+                <div className="type">
+                <a href="#completed" className={type[2]}
+                   onClick={this.props.switchType.bind(null, 'completed')}>
+                    Completed</a>
+                </div>
 
-                <li>
-                    <a href="#completed" className={type[2]}
-                       onClick={this.props.switchType.bind(null, 'completed')}>
-                        Completed</a>
-                </li>
-
-                <button onClick={this.props.clearCom}>Clear Completed</button>
-            </ol>
+                <button onClick={this.props.clearCom} className="button button-primary button-rounded button-small">
+                    Clear Completed
+                </button>
+            </div>
         </footer>
     }
 })

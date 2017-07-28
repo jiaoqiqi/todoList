@@ -8,6 +8,16 @@
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
+    <!-- Buttons 库的核心文件 -->
+    <link rel="stylesheet" href="./buttons.css">
+
+    <!-- 当需要使用带下拉菜单的按钮时才需要加载下面的 JavaScript 文件 -->
+    <!--<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/buttons.js"></script>-->
+
+    <!-- 只有使用字体图标时才需要加载 Font-Awesome -->
+    <!--<link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
+
     <style>
         h1{
             color:pink;
@@ -35,15 +45,45 @@
 
         .list{
             align-content: center;
-            margin-left: 38%;
+            margin-left: 30%;
             padding-top: 20px;
+            width: 90%;
+        }
+
+        .todoTitle{
+            margin-left: 10%;
+            width:18%;
+            word-wrap:break-word;
+            word-break:keep-all;   /*达到固定长度后自动换行*/
+        }
+
+        .todoChoose{
+            border-radius:50%;
+            color: cornflowerblue;
+
         }
 
         .deleteButton{
             color: red;
             border: hidden;
             background-color: inherit;
+            display:inline;
+            margin-left: 10%;
         }
+
+        .type{
+            margin-left: 4%;
+            margin-right: 5%;
+            display:inline;
+        }
+
+        .todo-count{
+            margin-top: 2%;
+            margin-left: 4%;
+        }
+
+
+        /*.div-inline{ display:inline}*/
 
     </style>
 
