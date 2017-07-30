@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>TodoList</title>
-    <!--<embed src="/home/monster/Music/CloudMusic/Audio Machine - Breath and Life.mp3" hidden="false" autostart="true" loop="true">-->
-        <!--<bgsound src="/home/monster/Music/CloudMusic/Audio Machine - Breath and Life.mp3" loop="-1">-->
-        <script src="./build/react.js"></script>
+    <script src="./build/react.js"></script>
     <script src="./build/react-dom.js"></script>
     <script src="./build/browser.min.js"></script>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -24,75 +22,75 @@
     <!--<link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
 
     <style>
-        h1{
-            color:pink;
+        h1 {
+            color: pink;
             text-align: center;
             font-size: 60px;
             margin-top: 5%;
             background-color: whitesmoke;
         }
 
-        .todos{
+        .todos {
             text-align: center;
         }
 
-        .inputTodo{
+        .inputTodo {
             text-align: center;
             font-size: 100%;
-            height:40px;
-            width:40%;
-            border:2px solid;
+            height: 40px;
+            width: 40%;
+            border: 2px solid;
             border-color: lightgoldenrodyellow;
-            border-radius:25px;
+            border-radius: 25px;
             margin-top: 3%;
-            outline:medium  /*输入时去掉外边框的方法*/
+            outline: medium /*输入时去掉外边框的方法*/
         }
 
-        .list{
+        .list {
             align-content: center;
             margin-left: 30%;
             padding-top: 20px;
             width: 90%;
         }
 
-        .todoTitle{
+        .todoTitle {
             margin-left: 10%;
-            width:18%;
-            word-wrap:break-word;
-            word-break:keep-all;   /*达到固定长度后自动换行*/
+            width: 18%;
+            word-wrap: break-word;
+            word-break: keep-all; /*达到固定长度后自动换行*/
         }
 
-        .todoChoose{
-            border-radius:50%;
+        .todoChoose {
+            border-radius: 50%;
             color: cornflowerblue;
 
         }
 
-        .deleteButton{
+        .deleteButton {
             color: red;
             border: hidden;
             background-color: inherit;
-            display:inline;
+            display: inline;
             margin-left: 10%;
         }
 
-        .type{
+        .type {
             margin-left: 4%;
             margin-right: 5%;
-            display:inline;
+            display: inline;
         }
 
-        .todo-count{
+        .todo-count {
             margin-top: 2%;
             margin-left: 4%;
         }
-
 
         #buttonbar {
             position: absolute;
             bottom: 20px;
             right: 20px;
         }
+
         button {
             margin: 5px 0 0;
             border: 0;
@@ -105,20 +103,25 @@
             line-height: 22px;
             border-radius: 100%;
         }
+
         #play::before {
             content: "\f04b";
             font-size: .8em;
         }
+
         #pause::before {
             content: "\f04c";
             font-size: .8em;
         }
+
         #volumeUp::before {
             content: "\f028";
         }
+
         #volumeDown::before {
             content: "\f027";
         }
+
         #volumeOff::before {
             content: "\f026";
         }

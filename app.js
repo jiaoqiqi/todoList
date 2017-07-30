@@ -28,6 +28,7 @@ const App = React.createClass({
                     title: task.value
                 }
             todos.push(todo);
+            document.getElementById("input").value = "";
             return todos;
         })
     },
@@ -108,7 +109,7 @@ const App = React.createClass({
             <section>
                 <Header title={todoList.name}/>
                 <div className="todos ">
-                    <input className="inputTodo"
+                    <input className="inputTodo" id="input"
                            type="text" ref="addTask"
                            placeholder="What needs to be done?"
                            defaultValue={this.state.addTitle}
