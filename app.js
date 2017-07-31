@@ -142,16 +142,20 @@ const TodoItem = React.createClass({
         const className = todo.completed ? "completed" : "";
 
         return <div className={className}>
-            <div>
-                <input type="checkbox"
-                       onClick={this.props.comTask}
-                       checked={this.completed}
-                       className="todoChoose 	glyphicon glyphicon-ok"/>
+            <ul>
+                <li type="checkbox"
+                    onClick={this.props.comTask}
+                    checked={this.completed}>
+                {/*<input type="checkbox"*/}
+                       {/*onClick={this.props.comTask}*/}
+                       {/*checked={this.completed}*/}
+                       {/*className="todoChoose 	glyphicon glyphicon-ok"/>*/}
 
                 <label className="todoTitle"> {todo.title} </label>
                 <button className="glyphicon glyphicon-remove deleteButton"
                         onClick={this.props.delTask}></button>
-            </div>
+                </li>
+            </ul>
         </div>
     }
 })
